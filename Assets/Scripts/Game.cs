@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
     public Color red, orange, yellow, green, blue, purple;
     private Color currentColor;
     private int currentColorCode;
+    
 
     void Start()
     {

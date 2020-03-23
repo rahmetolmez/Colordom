@@ -37,7 +37,7 @@ public class CubeClick : MonoBehaviour
                     {
                         currentColorCode = 1;
                         currentColor = red;
-                       
+                        Score.MoveMade();
                         //animator.enabled = true;
                         //animator.Play("CubeAnimation");
                     }
@@ -45,26 +45,31 @@ public class CubeClick : MonoBehaviour
                     {
                         currentColorCode = 2;
                         currentColor = orange;
+                        Score.MoveMade();
                     }
                     if (hit.transform.gameObject.name == "YellowCube")
                     {
                         currentColorCode = 3;
                         currentColor = yellow;
+                        Score.MoveMade();
                     }
                     if (hit.transform.gameObject.name == "GreenCube")
                     {
                         currentColorCode = 4;
                         currentColor = green;
+                        Score.MoveMade();
                     }
                     if (hit.transform.gameObject.name == "BlueCube")
                     {
                         currentColorCode = 5;
                         currentColor = blue;
+                        Score.MoveMade();
                     }
                     if (hit.transform.gameObject.name == "PurpleCube")
                     {
                         currentColorCode = 6;
                         currentColor = purple;
+                        Score.MoveMade();
                     }
                 }
             }
