@@ -24,4 +24,9 @@ public class Score : MonoBehaviour
         movesMade++;
         movesLeft--;
     }
+
+    public static int GetMovesLeft()
+    {
+        return movesLeft;
+    }
 }

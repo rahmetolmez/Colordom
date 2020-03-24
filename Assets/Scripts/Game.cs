@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    public const int BOARD_SIZE = 16;
     public ColorCube colorCube;
     public GameObject[] cubesArray;
     public CubeClick cubeClick;
-    private int[,] selectedArea = new int[16, 16];
-    private int[] board = new int[256];
+    private int[,] selectedArea = new int[BOARD_SIZE, BOARD_SIZE];
+    private int[] board = new int[BOARD_SIZE * BOARD_SIZE];
     public Color red, orange, yellow, green, blue, purple;
     private Color currentColor;
     private int currentColorCode;
@@ -25,44 +26,23 @@ public class Game : MonoBehaviour
 
     void Update()
     {
-        /*if (Input.GetKey("r"))
+        if(CheckWin() == true)
         {
-            currentColor = red;
-            currentColorCode = 1;
-        }
-        else if (Input.GetKey("o"))
-        {
-            currentColor = orange;
-            currentColorCode = 2;
-        } 
-        else if (Input.GetKey("y"))
-        {
-            currentColor = yellow;
-            currentColorCode = 3;
-        }
-        else if (Input.GetKey("g"))
-        {
-            currentColor = green;
-            currentColorCode = 4;
-        }
-        else if (Input.GetKey("b"))
-        {
-            currentColor = blue;
-            currentColorCode = 5;
-        }
-        else if (Input.GetKey("p"))
-        {
-            currentColor = purple;
-            currentColorCode = 6;
-        }*/
 
+        }
+
+        if(GameEnded())
+        {
+            Debug.Log("ended");
+            
+        }
         currentColorCode = cubeClick.currentColorCode;
         currentColor = cubeClick.currentColor;
 
         for (int c = 0; c < cubesArray.Length; c++)
         {
-            int j = c % 16;
-            int i = (int)Mathf.Floor(c / 16);
+            int j = c % BOARD_SIZE;
+            int i = (int)Mathf.Floor(c / BOARD_SIZE);
 
             if (selectedArea[i, j] == 1)
             {
@@ -129,8 +109,8 @@ public class Game : MonoBehaviour
             for(int c = 0; c < cubesArray.Length; c++)
             {
                 
-                int j = c % 16;
-                int i = (int)Mathf.Floor(c / 16);
+                int j = c % BOARD_SIZE;
+                int i = (int)Mathf.Floor(c / BOARD_SIZE);
                 
                 if (selectedArea[i, j] == 1)
                 { 
@@ -154,17 +134,38 @@ public class Game : MonoBehaviour
 
     public int DoubleIndexToSingle(int i, int j)
     {
-        return ((i * 16) + j);
+        return ((i * BOARD_SIZE) + j);
     }      
 
     public void Dbg()
     {
-        for(int i = 0; i < 16; i++)
+        for(int i = 0; i < BOARD_SIZE; i++)
         {
-            for(int j = 0; j < 16; j++)
+            for(int j = 0; j < BOARD_SIZE; j++)
             {
                 Debug.Log(selectedArea[i, j]);
             }
         }
+    }
+
+    private bool GameEnded()
+    {
+        if(Score.GetMovesLeft() <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckWin()
+    {
+        for(int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++)
+        {
+            if(board[i] != board[0])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
