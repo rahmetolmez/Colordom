@@ -1,5 +1,5 @@
 # Colordom
-A fun simple colorful game made by using Unity.
+A fun simple colorful game made with Unity.
 
 ![Image Colordom_Main_Menu](images/main_menu.png)
 
